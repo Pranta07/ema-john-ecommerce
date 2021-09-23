@@ -1,0 +1,17 @@
+.bold {
+    font-weight: bold;
+}
+
+.mid {
+    text-align: center;
+}
+.tb-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+}
+
+.cart {
+    margin: 10px;
+}
