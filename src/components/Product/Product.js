@@ -3,7 +3,8 @@ import "./Product.css";
 
 const Product = (props) => {
     const { name, seller, price, stock, img, star, features } = props.product;
-    console.log(props.product);
+    // console.log(props);
+
     return (
         <div className="product">
             <div className="product-img">
@@ -22,14 +23,19 @@ const Product = (props) => {
                                 Only {stock} left in stock - order soon!
                             </small>
                         </p>
-                        <button className="add-btn">Add to cart</button>
+                        <button
+                            onClick={props.buttonHandler}
+                            className="add-btn"
+                        >
+                            Add to cart
+                        </button>
                     </div>
                     <div className="product-features">
                         <p>Rating: {star}*</p>
                         <h3>Features</h3>
                         <ul>
                             {features.map((feature) => (
-                                <li>
+                                <li key={feature.description}>
                                     {feature.description}: {feature.value}
                                 </li>
                             ))}

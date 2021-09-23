@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
 
@@ -10,16 +11,26 @@ const Shop = () => {
             .then((data) => setProducts(data));
     }, []);
 
+    const [cart, setCart] = useState([]);
+    const buttonHandler = (product) => {
+        // setItemCount(itemCount + 1);
+        setCart([...cart, product]);
+        console.log(product);
+    };
+
     return (
         <div className="shop-container">
             <div className="product-container">
                 {products.map((product) => (
-                    <Product key={product.key} product={product}></Product>
+                    <Product
+                        key={product.key}
+                        product={product}
+                        buttonHandler={() => buttonHandler(product)}
+                    ></Product>
                 ))}
             </div>
             <div className="cart-container">
-                <h3>Order Summary</h3>
-                <h4>Items Ordered: 0</h4>
+                <Cart cart={cart}></Cart>
             </div>
         </div>
     );
