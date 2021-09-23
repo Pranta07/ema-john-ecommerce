@@ -1,0 +1,39 @@
+.product {
+    display: flex;
+    padding-bottom: 10px;
+    margin-right: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+.details {
+    margin-left: 16px;
+}
+
+.product-info {
+    display: flex;
+}
+
+.product-details {
+    margin-right: 100px;
+}
+
+.product-name {
+    color: rgb(58, 58, 252);
+}
+
+.add-btn {
+    padding: 10px 20px;
+    background-color: rgb(57, 57, 197);
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+.add-btn:hover {
+    background-color: rgb(78, 78, 238);
+    cursor: pointer;
+}
+
+.product-features ul {
+    font-size: 14px;
+    color: rgb(102, 102, 102);
+}
