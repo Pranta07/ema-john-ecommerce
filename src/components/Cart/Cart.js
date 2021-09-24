@@ -3,20 +3,31 @@ import "./Cart.css";
 
 const Cart = (props) => {
     const { cart } = props;
+
+    let newCart = [];
+    cart.forEach((cartProduct) => {
+        if (newCart.find((newCartProduct) => newCartProduct === cartProduct)) {
+            cartProduct["quantity"]++;
+        } else {
+            cartProduct["quantity"] = 1;
+            newCart = [...newCart, cartProduct];
+        }
+    });
+    // console.log(newCart);
+
     const total = cart.reduce(
         (previous, current) => previous + current.price,
         0
     );
-    // let total = 0;
-    // cart.forEach((product) => {
-    //     total += product.price;
-    // });
-    const shippingTotal = cart.reduce(
+
+    const shippingTotal = newCart.reduce(
         (previous, current) => previous + current.shipping,
         0
     );
+
     const tax = (total / 100) * 15;
     const grandTotal = total + shippingTotal + tax;
+
     return (
         <div className="cart">
             <h3 className="mid">Order Summary</h3>
