@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "./Product.css";
+import Rating from "react-rating";
 
 const Product = (props) => {
     const { name, seller, price, stock, img, star, features } = props.product;
@@ -34,7 +35,12 @@ const Product = (props) => {
                         </button>
                     </div>
                     <div className="product-features">
-                        <p>Rating: {star}*</p>
+                        <Rating
+                            initialRating={star}
+                            readonly
+                            emptySymbol="far fa-star icon-color"
+                            fullSymbol="fas fa-star icon-color"
+                        />
                         <h3>Features</h3>
                         <ul>
                             {features.map((feature) => (
