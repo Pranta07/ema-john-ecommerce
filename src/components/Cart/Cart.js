@@ -1,4 +1,5 @@
 import React from "react";
+import { clearTheCart } from "../../utilities/fakedb";
 import "./Cart.css";
 
 const Cart = (props) => {
@@ -22,6 +23,10 @@ const Cart = (props) => {
     const tax = (total / 100) * 15;
     const grandTotal = total + shippingTotal + tax;
 
+    const handleClearCart = () => {
+        clearTheCart();
+    };
+
     return (
         <div className="cart">
             <h3 className="mid">Order Summary</h3>
@@ -35,16 +40,21 @@ const Cart = (props) => {
             </p>
             <p className="tb-row">
                 <span className="bold">Shipping: </span>
-                <span>{shippingTotal.toFixed(2)}</span>
+                <span>${shippingTotal.toFixed(2)}</span>
             </p>
             <p className="tb-row">
                 <span className="bold">Tax: </span>
-                <span>{tax.toFixed(2)}</span>
+                <span>${tax.toFixed(2)}</span>
             </p>
             <p className="tb-row">
                 <span className="bold">Total: </span>
-                <span>{grandTotal.toFixed(2)}</span>
+                <span>${grandTotal.toFixed(2)}</span>
             </p>
+            <div className="mid">
+                <button onClick={handleClearCart} className="add-btn">
+                    Clear Cart
+                </button>
+            </div>
         </div>
     );
 };
