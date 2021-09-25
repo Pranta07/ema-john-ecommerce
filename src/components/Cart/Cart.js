@@ -4,23 +4,17 @@ import "./Cart.css";
 const Cart = (props) => {
     const { cart } = props;
 
-    let newCart = [];
-    cart.forEach((cartProduct) => {
-        if (newCart.find((newCartProduct) => newCartProduct === cartProduct)) {
-            cartProduct["quantity"]++;
-        } else {
-            cartProduct["quantity"] = 1;
-            newCart = [...newCart, cartProduct];
-        }
-    });
-    // console.log(newCart);
-
-    const total = cart.reduce(
-        (previous, current) => previous + current.price,
+    const totalItems = cart.reduce(
+        (previous, current) => previous + current.quantity,
         0
     );
 
-    const shippingTotal = newCart.reduce(
+    const total = cart.reduce(
+        (previous, current) => previous + current.price * current.quantity,
+        0
+    );
+
+    const shippingTotal = cart.reduce(
         (previous, current) => previous + current.shipping,
         0
     );
@@ -33,7 +27,7 @@ const Cart = (props) => {
             <h3 className="mid">Order Summary</h3>
             <p className="mid">
                 <span className="bold">Items Ordered: </span>
-                {props.cart.length}
+                {totalItems}
             </p>
             <p className="tb-row">
                 <span className="bold">Items: </span>

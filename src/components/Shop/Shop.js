@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { addToDb } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
@@ -7,7 +8,6 @@ const Shop = () => {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
     const [displayProducts, setDisplayProducts] = useState([]);
-
     useEffect(() => {
         fetch("./products.json")
             .then((res) => res.json())
@@ -18,9 +18,20 @@ const Shop = () => {
     }, []);
 
     const handleAddToCart = (product) => {
-        // setItemCount(itemCount + 1);
-        setCart([...cart, product]);
-        // console.log(product);
+        const prod = cart.find((prod) => prod.name === product.name);
+        if (prod) {
+            const newCart = cart.map((prod) => {
+                if (prod.name === product.name) {
+                    prod.quantity++;
+                }
+                return prod;
+            });
+            setCart(newCart);
+        } else {
+            product.quantity = 1;
+            setCart([...cart, product]);
+        }
+        addToDb(product.key);
     };
 
     const handleSearch = (ev) => {
@@ -29,9 +40,7 @@ const Shop = () => {
         const searchProducts = products.filter((product) =>
             product.name.toLowerCase().includes(searchText.toLowerCase())
         );
-        // setProducts(searchProducts);
         setDisplayProducts(searchProducts);
-        // console.log(displayProducts);
     };
 
     return (
