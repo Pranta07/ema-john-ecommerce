@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
-import { addToDb, clearTheCart, getStoredCart } from "../../utilities/fakedb";
+import { addToDb } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
@@ -62,11 +63,6 @@ const Shop = () => {
         setDisplayProducts(searchProducts);
     };
 
-    const handleClearCart = () => {
-        setCart([]);
-        clearTheCart();
-    };
-
     return (
         <div>
             <div className="search-container">
@@ -87,7 +83,11 @@ const Shop = () => {
                     ))}
                 </div>
                 <div className="cart-container">
-                    <Cart handleClearCart={handleClearCart} cart={cart}></Cart>
+                    <Cart cart={cart}>
+                        <Link to="/review">
+                            <button className="add-btn">Review Order</button>
+                        </Link>
+                    </Cart>
                 </div>
             </div>
         </div>

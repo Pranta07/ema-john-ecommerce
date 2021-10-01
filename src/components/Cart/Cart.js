@@ -2,7 +2,8 @@ import React from "react";
 import "./Cart.css";
 
 const Cart = (props) => {
-    const { cart, handleClearCart } = props;
+    const { cart } = props;
+    // console.log(props.children);
 
     const totalItems = cart.reduce(
         (previous, current) => previous + current.quantity,
@@ -45,11 +46,7 @@ const Cart = (props) => {
                 <span className="bold">Total: </span>
                 <span>${grandTotal.toFixed(2)}</span>
             </p>
-            <div className="mid">
-                <button onClick={handleClearCart} className="add-btn">
-                    Clear Cart
-                </button>
-            </div>
+            <div className="mid">{props.children}</div>
         </div>
     );
 };

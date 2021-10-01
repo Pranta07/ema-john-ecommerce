@@ -5,6 +5,7 @@ import Cart from "../Cart/Cart";
 import "./OrderReview.css";
 import ReviewProduct from "../ReviewProduct/ReviewProduct";
 import { clearTheCart, deleteFromDb } from "../../utilities/fakedb";
+import { Link } from "react-router-dom";
 const OrderReview = () => {
     const [products, setProducts] = useProducts();
 
@@ -16,7 +17,7 @@ const OrderReview = () => {
         deleteFromDb(key);
     };
 
-    const handleClearCart = () => {
+    const handlePlaceOrder = () => {
         setCart([]);
         clearTheCart();
     };
@@ -28,13 +29,20 @@ const OrderReview = () => {
                 <h2>Total Products: {cart.length}</h2>
                 {cart.map((prod) => (
                     <ReviewProduct
+                        key={prod.key}
                         handleRemove={handleRemove}
                         product={prod}
                     ></ReviewProduct>
                 ))}
             </div>
             <div className="cart-conatiner">
-                <Cart handleClearCart={handleClearCart} cart={cart}></Cart>
+                <Cart cart={cart}>
+                    <Link to="/shop">
+                        <button onClick={handlePlaceOrder} className="add-btn">
+                            Place Order
+                        </button>
+                    </Link>
+                </Cart>
             </div>
         </div>
     );
