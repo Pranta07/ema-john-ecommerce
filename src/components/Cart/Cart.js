@@ -1,9 +1,8 @@
 import React from "react";
-import { clearTheCart } from "../../utilities/fakedb";
 import "./Cart.css";
 
 const Cart = (props) => {
-    const { cart } = props;
+    const { cart, handleClearCart } = props;
 
     const totalItems = cart.reduce(
         (previous, current) => previous + current.quantity,
@@ -22,10 +21,6 @@ const Cart = (props) => {
 
     const tax = (total / 100) * 15;
     const grandTotal = total + shippingTotal + tax;
-
-    const handleClearCart = () => {
-        clearTheCart();
-    };
 
     return (
         <div className="cart">

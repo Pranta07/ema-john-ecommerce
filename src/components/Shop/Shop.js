@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { addToDb, getStoredCart } from "../../utilities/fakedb";
+import { addToDb, clearTheCart, getStoredCart } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
@@ -60,6 +60,11 @@ const Shop = () => {
         setDisplayProducts(searchProducts);
     };
 
+    const handleClearCart = () => {
+        setCart([]);
+        clearTheCart();
+    };
+
     return (
         <div>
             <div className="search-container">
@@ -80,7 +85,7 @@ const Shop = () => {
                     ))}
                 </div>
                 <div className="cart-container">
-                    <Cart cart={cart}></Cart>
+                    <Cart handleClearCart={handleClearCart} cart={cart}></Cart>
                 </div>
             </div>
         </div>
