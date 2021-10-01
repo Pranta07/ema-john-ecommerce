@@ -38,10 +38,10 @@ const Shop = () => {
     }, [products]); */
 
     const handleAddToCart = (product) => {
-        const prod = cart.find((prod) => prod.name === product.name);
+        const prod = cart.find((prod) => prod.key === product.key);
         if (prod) {
             const newCart = cart.map((prod) => {
-                if (prod.name === product.name) {
+                if (prod.key === product.key) {
                     prod.quantity++;
                 }
                 return prod;
