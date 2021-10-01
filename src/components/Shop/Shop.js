@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import useCart from "../../hooks/useCart";
 import { addToDb, clearTheCart, getStoredCart } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
@@ -6,7 +7,8 @@ import "./Shop.css";
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useCart(products);
+    //products to be rendered on UI
     const [displayProducts, setDisplayProducts] = useState([]);
 
     useEffect(() => {
@@ -18,7 +20,7 @@ const Shop = () => {
             });
     }, []);
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (products.length) {
             const localCart = getStoredCart();
             const newCart = [];
@@ -32,7 +34,7 @@ const Shop = () => {
             }
             setCart(newCart);
         }
-    }, [products]);
+    }, [products]); */
 
     const handleAddToCart = (product) => {
         const prod = cart.find((prod) => prod.name === product.name);
