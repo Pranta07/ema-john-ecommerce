@@ -20,14 +20,14 @@ const useFirebase = () => {
     const auth = getAuth();
 
     const handleGoogleSignIn = () => {
-        signInWithPopup(auth, googleProvider)
-            .then((result) => {
+        return signInWithPopup(auth, googleProvider);
+        /* .then((result) => {
                 //setUser(result.user);
                 console.log(result.user);
             })
             .catch((error) => {
                 setError(error.message);
-            });
+            }); */
     };
 
     useEffect(() => {

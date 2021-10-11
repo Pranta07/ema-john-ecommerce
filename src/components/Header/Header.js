@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useFirebase from "../../hooks/useFirebase";
+import useAuth from "../../hooks/useAuth";
+// import useFirebase from "../../hooks/useFirebase";
 import logo from "../../images/logo.png";
 import "./Header.css";
 
 const Header = () => {
-    const { user, handleSignOut } = useFirebase();
+    const { user, handleSignOut } = useAuth();
     return (
         <div className="header">
             <img src={logo} alt="" />
